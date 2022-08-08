@@ -1,19 +1,33 @@
 import { useState, useEffect } from "react";
+import CreateAccountForm from "./components/CreateAccountForm";
+import LoginForm from "./components/LoginForm";
+import LogoutButton from "./components/LogoutButton";
 
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
   }, []);
+  console.log(user)
+  
 
   return (
-    <div className="App">
-      <h1>Page Count: {count}</h1>
-    </div>
+    <>
+    {!user?
+      <>
+        <LoginForm/>
+        <CreateAccountForm/>
+      </>
+    :
+      <LogoutButton />}
+      <div>hello {user.username}</div>
+    </>
   );
 }
 
