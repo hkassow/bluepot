@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import CreateAccountForm from "./components/CreateAccountForm";
+import CreatePostForm from "./components/CreatePostForm";
 import LoginForm from "./components/LoginForm";
 import LogoutButton from "./components/LogoutButton";
 
@@ -18,16 +19,17 @@ function App() {
   
 
   return (
-    <>
-    {!user?
-      <>
-        <LoginForm/>
-        <CreateAccountForm/>
-      </>
-    :
-      <LogoutButton />}
-      <div>hello {user.username}</div>
-    </>
+    // <>
+    // {!user?
+    //   <>
+    //     <LoginForm/>
+    //     <CreateAccountForm/>
+    //   </>
+    // :
+    //   <LogoutButton />}
+    //   <div>hello {user.username}</div>
+    // </>
+    <CreatePostForm/>
   );
 }
 
