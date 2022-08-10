@@ -21,6 +21,10 @@ Tag.create!(name: 'teamfight')
 Tag.create!(name: 'outplay')
 Tag.create!(name: 'funny')
 Tag.create!(name: 'gank')
+Tag.create!(name: 'fed')
+
+Tag.create!(name: '1vX')
+Tag.create!(name: '1v1')
 
 puts 'seeding test user'
 
