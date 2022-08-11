@@ -36,7 +36,7 @@ puts 'seeding test user'
 puts 'seeding test posts'
 
 10.times {|index| 
-    Post.create!(title: "#{index}", description: "big test stuff #{index}", video: "coming soon", user_id: index+1 )
+    Post.create!(title: "#{index}", description: "big test stuff #{index}", user_id: index+1 )
 }
 
 puts 'seeding comments'
@@ -52,7 +52,7 @@ puts 'seeding votes'
 20.times { |i|
     5.times {|j|
         x = (rand() < 0.5)? 1: -1
-        Vote.create!(user_id: i+1, post_id: rand(1..10), value: x)
+        Vote.create_or_find_by(user_id: i+1, post_id: rand(1..10), value: x)
     }
 }
 
