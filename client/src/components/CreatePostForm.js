@@ -21,7 +21,14 @@ const CreatePostForm = () => {
     //     .then(r => r.json())
     //     .then(d => setVideoUrl(d.image_url))
     // })
-
+    const handleChange = (e) => {
+        var fReader = new FileReader()
+        fReader.readAsDataURL(e.target.files[0]);
+        fReader.onloadend = (event) => {
+            setVideoUrl(event.target.result)
+        }
+    }
+    
     return (
         <div> 
             <form onSubmit={handleSubmit}>
@@ -29,7 +36,7 @@ const CreatePostForm = () => {
                 <input name='title' type='text' id='title'>
                 </input>
                 <br/>
-                <input name='fileInput' type="file" required></input>
+                <input onChange={(e) => handleChange(e)} name='fileInput' type="file" required></input>
                 <input type="submit"/>
             </form>
             {videoUrl? <ReactPlayer url={videoUrl} controls={true} />: <h1>no vid</h1> }
