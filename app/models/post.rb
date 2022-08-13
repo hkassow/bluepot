@@ -9,6 +9,7 @@ class Post < ApplicationRecord
         self.votes.sum(:value)
     end
     def video_url
-        Rails.application.routes.url_helpers.url_for(video) if video.attached?
+        # Rails.application.routes.url_helpers.url_for(video) if video.attached?
+        Rails.application.routes.url_helpers.rails_blob_path(video, only_path: true) if video.attached?
     end
 end

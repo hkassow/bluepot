@@ -21,11 +21,12 @@ const CreatePostForm = () => {
     //     .then(r => r.json())
     //     .then(d => setVideoUrl(d.image_url))
     // })
+    console.log(videoUrl)
     const handleChange = (e) => {
         var fReader = new FileReader()
         fReader.readAsDataURL(e.target.files[0]);
         fReader.onloadend = (event) => {
-            setVideoUrl(event.target.result)
+            // setVideoUrl(event.target.result)
         }
     }
     

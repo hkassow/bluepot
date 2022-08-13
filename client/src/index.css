@@ -31,13 +31,13 @@ code {
 .inner {
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 30%;
   height: 80%;
   background-color: rgba(92, 98, 107,.9);
   align-content: center;
-  align-items: center;
   align-self: center;
   display: flex;
   position: relative;
   top: 10px;
+  border-radius: 15px;
 } 
