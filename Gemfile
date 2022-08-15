@@ -48,3 +48,5 @@ end
 
 
 gem "active_model_serializers", "~> 0.10.13"
+
+gem "google-cloud-storage", "~> 1.8", require: false

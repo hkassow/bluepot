@@ -27,7 +27,7 @@ function App() {
 
   return (
     <UserProvider>
-      <NewSession/>
+      {/* <NewSession/> */}
       <NavBar/>
       <BrowserRouter>
         <Routes>
