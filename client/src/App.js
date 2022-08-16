@@ -27,13 +27,12 @@ function App() {
 
   return (
     <UserProvider>
-      {/* <NewSession/> */}
       <BrowserRouter>
-        <NavBar/>
         <Routes>
           <Route path='' element = {<Home />}/>
           <Route path='/new' element = {<Discover />} />
           <Route path='/create-post' element = {<CreatePost />} />
+          <Route path='/login' element = {<NewSession />} />
           {/* <Route path="users">
             <Route path=":id" element={<UserProfile />} />
           </Route> */}

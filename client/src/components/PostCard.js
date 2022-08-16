@@ -8,8 +8,7 @@ const PostCard = () => {
         fetch('/posts/51')
         .then(r => r.json())
         .then(post => setPost(post))
-    },[])
-    console.log(post)
+    },[])   
     if (!post) {
         return (<h1>hi</h1>)
     }

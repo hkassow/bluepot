@@ -1,17 +1,19 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../context/user";
-import { Grid, GridColumn, GridRow, Menu, Button, Sidebar, MenuItem} from "semantic-ui-react";
+import { Grid, GridColumn, GridRow, Menu, Button, Sidebar, Segment} from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 const NavBar = () => {
     const { user, setUser } = useContext(UserContext)
     const [visible, setVisible] = useState(false)
     return (
-        <Grid columns={3} >
+        <Segment basic style={{position:"sticky", top: 0, "zIndex":10}}>
+        <Grid columns={3}>
             <GridRow>
             <GridColumn>
-                <Menu widths='2'>
+                <Menu widths={user? 3 : 2}>
                     <Menu.Item as={NavLink} to='/'>home</Menu.Item>
-                    <Menu.Item as={NavLink} to='/new'>new</Menu.Item>
+                    <Menu.Item as={NavLink} to='/new'>discover</Menu.Item>
+                    {user? <Menu.Item as={NavLink} to='/create-post'>create</Menu.Item> : <></>}
                 </Menu>
             </GridColumn>
             <GridColumn/>
@@ -30,17 +32,21 @@ const NavBar = () => {
                         direction='right'
                         style={{"height":"50%"}}
                         width='thin'>
+                            {user?<>
                             <Menu.Item ><br></br></Menu.Item>
                             <Menu.Item>User Page</Menu.Item>
-                            <Menu.Item>hi</Menu.Item>
-                            <Menu.Item>User History</Menu.Item>
+                            <Menu.Item>History</Menu.Item>
                             <Menu.Item><br></br></Menu.Item>
+                            </>:
+                            <Menu.Item as={NavLink} to='/login'>Login</Menu.Item>
+                            }
                             <Menu.Item onClick={() => setVisible(false)}>Close</Menu.Item>
                     </Sidebar>
                 </Menu>
             </GridColumn>
             </GridRow>
         </Grid>
+        </Segment>
     )
 }
 

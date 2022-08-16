@@ -4,12 +4,14 @@ import { Grid, GridColumn, Header} from "semantic-ui-react";
 import CreatePostForm from "./CreatePostForm";
 import PostCard from "./PostCard";
 import TabSideBar from "./TabSideBar";
+import NavBar from "./NavBar";
 
 const Home = () => {
     let contextRef = createRef()
 
     return (
         <>
+        <NavBar/>
         <Header textAlign="centered" size="huge" style={{"padding":"50px"}}> home top space </Header>
         <Grid columns={"equal"}>
             <GridColumn width={3}>

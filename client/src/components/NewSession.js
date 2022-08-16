@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LoginForm from "./LoginForm.js"
 import {Button, Grid, GridColumn, GridRow, Header} from 'semantic-ui-react'
 import CreateAccountForm from "./CreateAccountForm.js";
+import { NavLink } from "react-router-dom";
 const NewSession = () => {
     //true is login false is create account
     const [loginBool, setLoginBool] = useState(true)
@@ -25,10 +26,12 @@ const NewSession = () => {
                         </GridRow>
                         <GridRow verticalAlign="bottom" columns="equal" style={{"position":"relative"}}>
                             <GridColumn >
-                                <Button active={loginBool} onClick={handleClick}>login</Button>
+                                <Button as={NavLink} to="/">return</Button>
                             </GridColumn>
-                            <GridColumn >
-                                <Button active={!loginBool} onClick={handleClick}>sign up</Button>
+                            <GridColumn>
+                                {!loginBool?
+                                <Button onClick={handleClick}>login</Button>
+                               :<Button onClick={handleClick}>sign up</Button>}
                             </GridColumn>
                         </GridRow>
                     </Grid>

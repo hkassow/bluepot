@@ -1,8 +1,10 @@
 import {useState, useContext} from "react"
+import { useNavigate } from "react-router-dom";
 import { Divider, Form, Message } from "semantic-ui-react";
 import { UserContext } from "../context/user";
 
 const LoginForm = () => {
+  let navigate = useNavigate()
   const { setUser } = useContext(UserContext)
   const [anyErrors, setAnyErrors] = useState(false)
   const [errorMessages, setErrorMessages] = useState('')
@@ -10,10 +12,13 @@ const LoginForm = () => {
       username: '',
       password: ''
   });
+  const handleLogin = (user) => {
+    setUser(user)
+    navigate("/", { replace: true })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
     fetch("/login", {
       method: "POST",
       headers: {
@@ -23,7 +28,7 @@ const LoginForm = () => {
     })
       .then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => handleLogin(user));
       } else {
         setAnyErrors(true)
         setErrorMessages('invalid username or password')
@@ -39,7 +44,7 @@ const LoginForm = () => {
   }
 
   return (
-    <Form style={{"width":"100%", "margin": "auto"}}onSubmit={handleSubmit}>
+    <Form style={{"width":"100%", "margin": "auto"}} onSubmit={handleSubmit}>
       <Form.Input
         transparent
         required
