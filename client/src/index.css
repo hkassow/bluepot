@@ -41,3 +41,7 @@ code {
   top: 10px;
   border-radius: 15px;
 } 
+
+#userbar {
+  height: fit-content!important;
+}

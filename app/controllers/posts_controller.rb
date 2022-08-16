@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
     def create
-        @post = Post.create!(post_params)
-        render json: @post, status: :created, serializer: PostSerializer
+        post = Post.create!(post_params)
+        render json: post, status: :created, serializer: PostSerializer
+    end
+    def update
+        post = Post.find(params[:id])
+        post.update(post_params)
     end
     def show
         post = Post.find(params[:id])

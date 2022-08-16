@@ -28,11 +28,11 @@ function App() {
   return (
     <UserProvider>
       {/* <NewSession/> */}
-      <NavBar/>
       <BrowserRouter>
+        <NavBar/>
         <Routes>
           <Route path='' element = {<Home />}/>
-          <Route path='/discover' element = {<Discover />} />
+          <Route path='/new' element = {<Discover />} />
           <Route path='/create-post' element = {<CreatePost />} />
           {/* <Route path="users">
             <Route path=":id" element={<UserProfile />} />
