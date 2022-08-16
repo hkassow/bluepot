@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../context/user";
 import { Grid, GridColumn, GridRow, Menu, Button, Sidebar, Segment} from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+import LogoutButton from "./LogoutButton";
 const NavBar = () => {
     const { user, setUser } = useContext(UserContext)
     const [visible, setVisible] = useState(false)
@@ -35,7 +36,7 @@ const NavBar = () => {
                             {user?<>
                             <Menu.Item ><br></br></Menu.Item>
                             <Menu.Item>User Page</Menu.Item>
-                            <Menu.Item>History</Menu.Item>
+                            <LogoutButton></LogoutButton>
                             <Menu.Item><br></br></Menu.Item>
                             </>:
                             <Menu.Item as={NavLink} to='/login'>Login</Menu.Item>

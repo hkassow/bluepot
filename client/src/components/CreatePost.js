@@ -1,12 +1,22 @@
 import React from "react";
 import CreatePostForm from "./CreatePostForm";
 import NavBar from "./NavBar";
+import { Grid, Header, GridColumn } from "semantic-ui-react";
 
 const CreatePost = () => {
     return (
         <>
-            <NavBar></NavBar>
-            <CreatePostForm />
+        <NavBar/>
+        <Header textAlign="centered" size="huge" style={{"padding":"50px"}}> home top space </Header>
+        <Grid columns={"equal"}>
+            <GridColumn width={2}>
+                hi
+            </GridColumn>
+            <GridColumn >
+                <CreatePostForm />
+            </GridColumn>
+            <GridColumn width={2}> hi </GridColumn>  
+        </Grid>
         </>
     )
 }

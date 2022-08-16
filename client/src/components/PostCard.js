@@ -5,13 +5,14 @@ import { Card, Container, Divider, Grid, GridColumn, GridRow, Label, List, Menu 
 const PostCard = () => {
     const [post, setPost] = useState(false)
     useEffect(() => {
-        fetch('/posts/51')
+        fetch('/posts/53')
         .then(r => r.json())
         .then(post => setPost(post))
     },[])   
     if (!post) {
         return (<h1>hi</h1>)
     }
+    console.log(post)
     return (
         <>
             <Card fluid>
@@ -25,19 +26,19 @@ const PostCard = () => {
                             <GridColumn style={{width:"fit-content"}}>
                                 <ReactPlayer url={post.video_url} controls={true}></ReactPlayer>
                             </GridColumn>
-                            <GridColumn stretched verticalAlign={"middle"}>
-                                <List relaxed style={{textAlign: "center"}}>
-                                    <List.Item >hi</List.Item>
-                                    <List.Item textAlign="center">hi</List.Item>
-                                    <List.Item textAlign="center">hi</List.Item>
-                                </List> 
-                            </GridColumn>
                         </GridRow>
                     </Grid>
                 </Card.Content>
                 <Card.Content as={Menu}>
-                    <Card.Header as={Menu.Item}>vote</Card.Header>
-                    <Card.Header as={Menu.Item} position={"right"}>comments</Card.Header>
+                    <Menu.Menu>
+                        {post.associated_tags.length === 0? <></>: post.associated_tags.map(tag => {
+                                return <Menu.Item>{tag.name}</Menu.Item>
+                        })}
+                    </Menu.Menu>
+                    <Menu.Menu position="right" width={2}>
+                        <Card.Header as={Menu.Item} >rating: {post.rating}</Card.Header>
+                        <Card.Header as={Menu.Item} >comments</Card.Header>
+                    </Menu.Menu>
                 </Card.Content>
             </Card>
         </>

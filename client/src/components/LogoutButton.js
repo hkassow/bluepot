@@ -1,3 +1,4 @@
+import { Menu } from "semantic-ui-react";
 
 function LogoutButton() {
     function handleLogout() {
@@ -7,9 +8,7 @@ function LogoutButton() {
     }
   
     return (
-      <header>
-        <button onClick={handleLogout}>Logout</button>
-      </header>
+        <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
     );
 }
 
