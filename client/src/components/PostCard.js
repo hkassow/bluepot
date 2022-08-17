@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from 'react-player'
+import { useNavigate } from "react-router-dom";
 import { Card, Container, Divider, Grid, GridColumn, GridRow, Label, List, Menu } from "semantic-ui-react";
 
 const PostCard = () => {
     const [post, setPost] = useState(false)
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate(`/post/${post.id}`, {replace: true, state: post})
+    }
     useEffect(() => {
-        fetch('/posts/53')
+        fetch('/posts/54')
         .then(r => r.json())
         .then(post => setPost(post))
     },[])   
@@ -21,13 +26,9 @@ const PostCard = () => {
                     <Card.Header as={Menu.Item} position={"right"}>{post.user.username}</Card.Header>
                 </Card.Content>
                 <Card.Content>
-                    <Grid columns={4} relaxed>
-                        <GridRow >
-                            <GridColumn style={{width:"fit-content"}}>
-                                <ReactPlayer url={post.video_url} controls={true}></ReactPlayer>
-                            </GridColumn>
-                        </GridRow>
-                    </Grid>
+                    <div className="videoWrapper" >
+                        <ReactPlayer width="100%" height="100%" className="videoPlayer" url={post.video_url} controls={true}></ReactPlayer>
+                    </div>
                 </Card.Content>
                 <Card.Content as={Menu}>
                     <Menu.Menu>
@@ -37,7 +38,7 @@ const PostCard = () => {
                     </Menu.Menu>
                     <Menu.Menu position="right" width={2}>
                         <Card.Header as={Menu.Item} >rating: {post.rating}</Card.Header>
-                        <Card.Header as={Menu.Item} >comments</Card.Header>
+                        <Card.Header as={Menu.Item} onClick={handleClick} >comments</Card.Header>
                     </Menu.Menu>
                 </Card.Content>
             </Card>

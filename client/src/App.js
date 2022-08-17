@@ -11,6 +11,8 @@ import Discover from "./components/Discover";
 import CreatePost from "./components/CreatePost";
 import { UserProvider } from "./context/user";
 import NewSession from "./components/NewSession";
+import Post from "./components/Post";
+import EditPost from "./components/EditPost";
 
 
 function App() {
@@ -33,7 +35,8 @@ function App() {
           <Route path='/new' element = {<Discover />} />
           <Route path='/create-post' element = {<CreatePost />} />
           <Route path='/login' element = {<NewSession />} />
-          <Route path='/posts/:id'
+          <Route path='/post/:id' element = {<Post/>} />
+          <Route path='/edit-post' element = {<EditPost />} />
           {/* <Route path="users">
             <Route path=":id" element={<UserProfile />} />
           </Route> */}
