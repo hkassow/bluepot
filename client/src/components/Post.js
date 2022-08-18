@@ -53,6 +53,19 @@ const Post = () => {
     const deleteComment = (id) => {
         setComments(comments.filter(comment => comment.id !== id))
     }
+    const handleFollow = () => {
+        const follow = {
+            follower_id: user.id,
+            followee_id: post.user.id
+        }
+        fetch('/follows',{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(follow)
+        })
+    }
     return (
         <>
         <NavBar/>
@@ -77,7 +90,7 @@ const Post = () => {
                     </Button.Group>
                     }
                     </>:
-                    <Menu.Item>follow {post.user.username}</Menu.Item>
+                    <Menu.Item onClick={handleFollow}>follow: {post.user.username}</Menu.Item>
                     }
                 </>
                 :

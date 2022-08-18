@@ -7,9 +7,9 @@ const NavBar = () => {
     const { user, setUser } = useContext(UserContext)
     const [visible, setVisible] = useState(false)
     return (
-        <Segment basic style={{position:"sticky", top: 0, "zIndex":10}}>
+        <Segment basic style={{padding: 0,position:"sticky", top: 0, "zIndex":10}}>
         <Grid columns={3}>
-            <GridRow>
+            <GridRow style={{paddingTop:0}}>
             <GridColumn>
                 <Menu widths={user? 3 : 2}>
                     <Menu.Item as={NavLink} to='/'>home</Menu.Item>
