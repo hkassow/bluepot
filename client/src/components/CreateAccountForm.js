@@ -40,6 +40,9 @@ const CreateAccountForm = () => {
     const handleChange = (e) => {
         const {name, value} = e.target
         setFormData({...formData, [name]:value })
+        if (anyErrors) {
+            setTimeout(() => {  setAnyErrors(false) }, 1000);
+        }
     }
 
     return (

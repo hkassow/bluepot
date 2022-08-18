@@ -8,6 +8,7 @@ class User < ApplicationRecord
     has_many :followees, through: :followers
     has_many :followees, foreign_key: :followee_id, class_name: 'Follow'
     has_many :followers, through: :followees
+    validates :username, uniqueness: true
     
     def following
         Follow.following(self)

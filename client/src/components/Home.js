@@ -18,11 +18,7 @@ const Home = () => {
                 <TabSideBar/>
             </GridColumn>
             <GridColumn >
-                <PostCard/> 
-                <PostCard/> 
-                <PostCard/> 
-                <PostCard/> 
-                <PostCard/> 
+                
             </GridColumn>
             <GridColumn width={3}> hi </GridColumn>  
         </Grid>

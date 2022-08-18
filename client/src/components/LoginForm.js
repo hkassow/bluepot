@@ -39,12 +39,12 @@ const LoginForm = () => {
       const {name, value} = e.target
       setFormData({...formData, [name]:value })
       if (anyErrors) {
-        setTimeout(() => {  setAnyErrors(false) }, 3000);
+        setTimeout(() => {  setAnyErrors(false) }, 1000);
     }
   }
 
   return (
-    <Form style={{"width":"100%", "margin": "auto"}} onSubmit={handleSubmit}>
+    <Form style={{"width":"100%", "margin": "auto"}} error onSubmit={handleSubmit}>
       <Form.Input
         transparent
         required
@@ -66,7 +66,7 @@ const LoginForm = () => {
       />
       <Divider/>
       {anyErrors?
-      <Message fluid style={{"padding":"14px", "margin": "0"}} error content= {errorMessages}/>
+      <Message style={{"padding":"14px", "margin": "0"}} error content={errorMessages}/>
       :
       <Form.Button fluid type="submit">Login</Form.Button>
       }

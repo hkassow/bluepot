@@ -33,7 +33,7 @@ const Discover = () => {
         <Grid columns={"equal"}>
             <GridRow>
                 <GridColumn width={3}>
-                     <Menu vertical style={{position:"sticky", top:"25%"}}>
+                     <Menu vertical style={{position:"sticky", top:"20%"}}>
                             <Dropdown
                                 placeholder='tags'
                                 fluid

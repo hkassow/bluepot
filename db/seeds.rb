@@ -26,34 +26,4 @@ Tag.create!(name: 'fed')
 Tag.create!(name: '1vX')
 Tag.create!(name: '1v1')
 
-puts 'seeding test user'
-
-
-20.times { |index| 
-    User.create!(username: "testbot#{index}", password: 'testword', summoner_name: "testsummoner#{index}")
-}
-
-puts 'seeding test posts'
-
-10.times {|index| 
-    Post.create!(title: "#{index}", description: "big test stuff #{index}", user_id: index+1 )
-}
-
-puts 'seeding comments'
-
-20.times { |i| 
-    5.times {|j|
-        Comment.create!(text: "test comment ##{j+1} by user #{i+1}", user_id: i+1, post_id: rand(1..10))
-    }
-}
-
-puts 'seeding votes'
-
-20.times { |i|
-    5.times {|j|
-        x = (rand() < 0.5)? 1: -1
-        Vote.create_or_find_by(user_id: i+1, post_id: rand(1..10), value: x)
-    }
-}
-
-puts 'done'
+Tag.create!(name: 'bot')

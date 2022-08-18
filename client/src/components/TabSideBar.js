@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { Accordion, Icon, Segment, Button, Menu} from "semantic-ui-react";
+import { Accordion, Icon, Container, Segment, Button, Menu} from "semantic-ui-react";
 import { UserContext } from "../context/user";
 
 const TabSideBar = () => {
@@ -72,16 +72,16 @@ const TabSideBar = () => {
             }
           }))
       }
-    },[tags])
+    },[tags, user])
     if (!user) {
       return (
       <Segment as={Button} onClick ={() => (navigate('/login'))} >
-        login to customize your home page
+        login to customize your home view and upload posts
       </Segment>
       )
     }
       return (
-        <Accordion styled style={{position:"sticky", top:"25%"}}>
+        <Accordion styled style={{position:"sticky", top:"20%"}}>
           <Accordion.Title
             active={activeIndex === 0}
             index={0}
@@ -107,11 +107,13 @@ const TabSideBar = () => {
             tags you follow
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 1}>
+          <Container style={{maxHeight:"400px", "overflow-y": "scroll"}}>
             {userTags.map(tag => 
             <Menu widths={2}>
               <Menu.Item >{tag.name}</Menu.Item>
               <Menu.Item position="right" onClick={(e) => handleDeleteTag(e, tag.id)}>x</Menu.Item>
             </Menu>)}
+          </Container>
           </Accordion.Content>
 
           <Accordion.Title
@@ -122,8 +124,10 @@ const TabSideBar = () => {
             <Icon name='dropdown' />
             add tag
           </Accordion.Title>
-          <Accordion.Content active={activeIndex === 2}>
+          <Accordion.Content active={activeIndex === 2} >
+            <Container style={{maxHeight:"400px", "overflow-y": "scroll"}}>
             {displayTags}
+            </Container>
           </Accordion.Content>
         </Accordion>
       )
