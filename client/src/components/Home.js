@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, GridColumn, Header} from "semantic-ui-react";
 import CreatePostForm from "./CreatePostForm";
 import PostCard from "./PostCard";
 import TabSideBar from "./TabSideBar";
 import NavBar from "./NavBar";
+import { UserContext } from "../context/user";
 
 const Home = () => {
-
+    const {user} = useContext(UserContext)
+    console.log(user)
     return (
         <>
         <NavBar/>

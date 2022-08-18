@@ -17,7 +17,6 @@ const PostCard = () => {
     if (!post) {
         return (<h1>hi</h1>)
     }
-    console.log(post)
     return (
         <>
             <Card fluid>
