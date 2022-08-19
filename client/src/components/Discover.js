@@ -1,19 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import NavBar from "./NavBar";
 import { Header, Grid, GridColumn, GridRow, Dropdown, Container, Button, Menu, MenuItem } from "semantic-ui-react";
 import { useState } from "react";
 import PostCard from "./PostCard";
+import { PostContext } from "../context/posts";
 
 const Discover = () => {
     const [tags, setTags] = useState(null)
     const [valueArray, setValueArray] = useState({value: []})
     const [showAll, setShowAll] = useState(true)
+    const {posts} = useContext(PostContext)
+    const [displayPosts, setDisplayPosts] = useState(null)
     useEffect(() => {
         fetch('/tags')
         .then(r => r.json())
         .then(tags => tags.map(tag => {return {key:tag.id, text:tag.name, value:tag.name}}))
         .then(tags => setTags(tags))
     },[])
+    console.log(valueArray)
+    useEffect(() => {
+        if (showAll || (valueArray['value'].length === 0)) {
+            setDisplayPosts(posts.map(post => { return <PostCard post={post}/>}))
+        } else {
+            setDisplayPosts(posts.map(post => { if (post.associated_tags.some(tag => valueArray['value'].includes(tag.name) )) {
+                return <PostCard post={post}/>
+            } else {
+                <></>
+            }}))
+        }
+    },[posts, valueArray, showAll])
 
     const handleChange = (e, { value }) => {
         if (showAll) {
@@ -22,10 +37,10 @@ const Discover = () => {
         setValueArray({...valueArray, value})
     }
     const handleShowAll = () => {
-        setShowAll(true)
         setValueArray({value: []})
+        setShowAll(true)
     }
-    console.log(showAll)
+
     return (
         <>
         <NavBar/>
@@ -49,11 +64,7 @@ const Discover = () => {
                         </Menu>
                 </GridColumn>
                 <GridColumn >
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
+                {displayPosts}
                 </GridColumn>
                 <GridColumn width={3}> hi </GridColumn>  
             </GridRow>

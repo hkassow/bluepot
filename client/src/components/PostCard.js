@@ -3,19 +3,10 @@ import ReactPlayer from 'react-player'
 import { useNavigate } from "react-router-dom";
 import { Card, Container, Divider, Grid, GridColumn, GridRow, Label, List, Menu } from "semantic-ui-react";
 
-const PostCard = () => {
-    const [post, setPost] = useState(false)
+const PostCard = ({post}) => {
     const navigate = useNavigate()
     const handleClick = () => {
         navigate(`/post/${post.id}`, {replace: true, state: post})
-    }
-    useEffect(() => {
-        fetch('/posts/54')
-        .then(r => r.json())
-        .then(post => setPost(post))
-    },[])   
-    if (!post) {
-        return (<h1>hi</h1>)
     }
     return (
         <>

@@ -15,7 +15,7 @@ function UserProvider({ children }) {
     const [user, setUser] = useState(false)
     return (
         <UserContext.Provider value = {{ user, setUser }}>
-            {children}
+            { children }
         </UserContext.Provider>
     )
 }

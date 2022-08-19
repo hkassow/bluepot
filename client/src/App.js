@@ -13,6 +13,7 @@ import { UserProvider } from "./context/user";
 import NewSession from "./components/NewSession";
 import Post from "./components/Post";
 import EditPost from "./components/EditPost";
+import { PostProvider } from "./context/posts";
 
 
 function App() {
@@ -30,13 +31,17 @@ function App() {
   return (
     <UserProvider>
       <BrowserRouter>
-        <Routes>
-          <Route inverted path='' element = {<Home />}/>
-          <Route path='/new' element = {<Discover />} />
-          <Route path='/create-post' element = {<CreatePost />} />
-          <Route path='/login' element = {<NewSession />} />
-          <Route path='/post/:id' element = {<Post/>} />
-          <Route path='/edit-post' element = {<EditPost />} />
+          <PostProvider>
+            <Routes>
+            <Route inverted path='/' element = {<Home />}/>
+            <Route path='/new' element = {<Discover />} />
+            </Routes>
+          </PostProvider>
+          <Routes>
+            <Route path='/create-post' element = {<CreatePost />} />
+            <Route path='/login' element = {<NewSession />} />
+            <Route path='/post/:id' element = {<Post/>} />
+            <Route path='/edit-post' element = {<EditPost />} />
           {/* <Route path="users">
             <Route path=":id" element={<UserProfile />} />
           </Route> */}

@@ -1,4 +1,8 @@
 class PostsController < ApplicationController
+    def index
+        posts = Post.all
+        render json: posts
+    end
     def show
         find_post
         render json: @post

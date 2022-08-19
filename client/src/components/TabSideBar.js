@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Accordion, Icon, Container, Segment, Button, Menu} from "semantic-ui-react";
 import { UserContext } from "../context/user";
 
-const TabSideBar = () => {
+const TabSideBar = ({handleTagUpdate}) => {
     const {user} = useContext(UserContext)
     const [activeIndex, setActiveIndex] = useState(0)
     const [tags, setTags] = useState(false)
@@ -43,7 +43,10 @@ const TabSideBar = () => {
         })
       })
       .then(r => r.json())
-      .then(d => setUserTags(d))
+      .then(d => {
+        setUserTags(d)
+        handleTagUpdate(d)
+      })
       e.target.parentNode.remove()
     }
     useEffect(() => {
