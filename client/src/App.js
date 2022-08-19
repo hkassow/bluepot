@@ -18,22 +18,13 @@ import { PostProvider } from "./context/posts";
 
 function App() {
 
-  // useEffect(() => {
-  //   fetch("/me").then((response) => {
-  //     if (response.ok) {
-  //       response.json().then((user) => setUser(user));
-  //     }
-  //   });
-  // }, []);
-  
-  
 
   return (
     <UserProvider>
       <BrowserRouter>
           <PostProvider>
             <Routes>
-            <Route inverted path='/' element = {<Home />}/>
+            <Route path='/' element = {<Home />}/>
             <Route path='/new' element = {<Discover />} />
             </Routes>
           </PostProvider>
