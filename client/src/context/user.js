@@ -13,8 +13,15 @@ function UserProvider({ children }) {
         });
     }, []);
     const [user, setUser] = useState(false)
+    const updateUser = () => {
+        fetch("/me").then((r) => {
+            if (r.ok){
+                r.json().then(user => setUser(user))
+            }
+        })
+    }
     return (
-        <UserContext.Provider value = {{ user, setUser }}>
+        <UserContext.Provider value = {{ user, setUser, updateUser }}>
             { children }
         </UserContext.Provider>
     )

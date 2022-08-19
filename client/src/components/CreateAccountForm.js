@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Divider, Form, Message} from "semantic-ui-react";
+import { UserContext } from "../context/user";
 const CreateAccountForm = () => {
+    const navigate = useNavigate()
+    const {setUser} = useContext(UserContext)
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -8,27 +12,39 @@ const CreateAccountForm = () => {
     });
     const [anyErrors, setAnyErrors] = useState(false)
     const [errorMessages, setErrorMessages] = useState('')
-
+    const handleLogin = (user) => {
+        setUser(user)
+        navigate("/", { replace: true })
+      }
     const handleSubmit = (e) => {
         e.preventDefault();
         if (formData.password !== formData.password2) {
             setAnyErrors(true)
             setErrorMessages('passwords must match')
         } else {
+            const loginData = {
+                username: formData.username,
+                    password: formData.password
+            }
             fetch("/signup", {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    username: formData.username,
-                    password: formData.password
-                }),
+                body: JSON.stringify(loginData),
             })
                 .then((r) => {
 
                     if (r.ok) {
-                        r.json().then((d) => console.log(d));
+                        fetch("/login", {
+                            method: "POST",
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(loginData),
+                          })
+                          .then(r => r.json())
+                          .then(user => handleLogin(user))
                     } else {
                         r.json().then(d => setErrorMessages(d.errors[0]))
                         setAnyErrors(true)

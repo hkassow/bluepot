@@ -3,6 +3,6 @@ class Follow < ApplicationRecord
     belongs_to :followee, class_name: 'User'
 
     def self.following (user)
-        select { |follow| follow.followee == user}.map {|follow| follow.follower}
+        select { |follow| follow.follower == user}.map {|follow| follow.followee}
     end
 end

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Accordion, Icon, Container, Segment, Button, Menu} from "semantic-ui-react";
 import { UserContext } from "../context/user";
 
-const TabSideBar = ({handleTagUpdate}) => {
+const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
     const {user} = useContext(UserContext)
     const [activeIndex, setActiveIndex] = useState(0)
     const [tags, setTags] = useState(false)
@@ -17,18 +17,18 @@ const TabSideBar = ({handleTagUpdate}) => {
       setActiveIndex(newIndex)
     }
     const handleDeleteTag = (e, tagID) => {
-      console.log(tagID)
       const path = e.target.id
-      console.log(path)
       fetch(`/associated_tags/${tagID}`,{
         method: "DELETE"
-      })
+      }).then(r => r.json())
+      .then(d => handleTagUpdate(d))
       e.target.parentNode.remove()
     }
-    const handleDeleteFollow = (e, followerID) => {
-      fetch(`/follows?follower_id=${followerID}&followee_id=${user.id}`, {
+    const handleDeleteFollow = (e, followeeID) => {
+      fetch(`/follows?follower_id=${user.id}&followee_id=${followeeID}`, {
         method: "DELETE"
-      })
+      }).then(r => r.json())
+      .then(d => handleFollowUpdate(d))
       e.target.parentNode.remove()
     }
     const handleAddTag = (e, tagID) => {
@@ -56,7 +56,9 @@ const TabSideBar = ({handleTagUpdate}) => {
     },[])
     useEffect(() => {
       if (user) {
+        handleTagUpdate(user.associated_tags)
         setUserTags(user.associated_tags)
+        handleFollowUpdate(user.following)
       }
     }, [user])
 

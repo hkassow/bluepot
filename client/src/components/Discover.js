@@ -44,23 +44,21 @@ const Discover = () => {
     return (
         <>
         <NavBar/>
-        <Header textalign="centered" size="huge" style={{"padding":"50px"}}> discover top space </Header>
+        <Header textalign="centered" size="huge" style={{"padding":"50px", position: "sticky", top:"5%"}}> Discover </Header>
         <Grid columns={"equal"}>
             <GridRow>
                 <GridColumn width={3}>
                      <Menu vertical style={{position:"sticky", top:"20%"}}>
                             <Dropdown
-                                placeholder='tags'
+                                placeholder='search by tag'
                                 fluid
-                                multiple
                                 search
                                 selection
                                 value = {valueArray["value"]}
                                 options={tags}
                                 onChange={handleChange}
                             />
-                            <Menu.Item></Menu.Item>
-                            <Menu.Item fluid as={Button} onClick={() => handleShowAll()}>show all</Menu.Item>
+                            {valueArray["value"].length === 0? <></>:<Menu.Item fluid as={Button} onClick={() => handleShowAll()}>show all</Menu.Item>}
                         </Menu>
                 </GridColumn>
                 <GridColumn >
