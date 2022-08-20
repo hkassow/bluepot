@@ -21,23 +21,18 @@ function App() {
 
   return (
     <UserProvider>
+      <PostProvider>
       <BrowserRouter>
-          <PostProvider>
-            <Routes>
+          <Routes>
             <Route path='/' element = {<Home />}/>
             <Route path='/new' element = {<Discover />} />
-            </Routes>
-          </PostProvider>
-          <Routes>
             <Route path='/create-post' element = {<CreatePost />} />
             <Route path='/login' element = {<NewSession />} />
             <Route path='/post/:id' element = {<Post/>} />
             <Route path='/edit-post' element = {<EditPost />} />
-          {/* <Route path="users">
-            <Route path=":id" element={<UserProfile />} />
-          </Route> */}
         </Routes>
       </BrowserRouter>
+      </PostProvider>
     </UserProvider>
   );
 }
