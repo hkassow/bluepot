@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReactPlayer from 'react-player'
+// import ReactPlayer from 'react-player'
 import { useNavigate } from "react-router-dom";
 import { Card, Container, Divider, Grid, GridColumn, GridRow, Label, List, Menu } from "semantic-ui-react";
 
@@ -17,7 +17,7 @@ const PostCard = ({post}) => {
                 </Card.Content>
                 <Card.Content>
                     <div className="videoWrapper" >
-                        <ReactPlayer width="100%" height="100%" className="videoPlayer" url={post.video_url} controls={true}></ReactPlayer>
+                        {/* <ReactPlayer width="100%" height="100%" className="videoPlayer" url={post.video_url} controls={true}></ReactPlayer> */}
                     </div>
                 </Card.Content>
                 <Card.Content as={Menu}>
