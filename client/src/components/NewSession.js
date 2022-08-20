@@ -42,11 +42,3 @@ const NewSession = () => {
 }
 
 export default NewSession
-
-{/* <div>
-                        <LoginForm/>
-                    </div>
-                    <div>
-                        <button>sign up</button>
-                        <button>sign in</button>
-                    </div> */}

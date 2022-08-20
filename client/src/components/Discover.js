@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import NavBar from "./NavBar";
-import { Header, Grid, GridColumn, GridRow, Dropdown, Container, Button, Menu, MenuItem } from "semantic-ui-react";
+import { Header, Grid, GridColumn, GridRow, Dropdown,  Button, Menu} from "semantic-ui-react";
 import { useState } from "react";
 import PostCard from "./PostCard";
 import { PostContext } from "../context/posts";

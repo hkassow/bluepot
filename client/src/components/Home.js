@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Grid, GridColumn, Header} from "semantic-ui-react";
-import CreatePostForm from "./CreatePostForm";
 import PostCard from "./PostCard";
 import TabSideBar from "./TabSideBar";
 import NavBar from "./NavBar";

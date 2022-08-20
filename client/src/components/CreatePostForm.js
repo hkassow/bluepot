@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react"
 import { UserContext } from "../context/user";
-// import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player'
 import { Form, Dropdown, Segment, Grid, GridRow, GridColumn, Button } from "semantic-ui-react"
 import { useNavigate } from "react-router-dom";
 const CreatePostForm = () => {
@@ -75,7 +75,7 @@ const CreatePostForm = () => {
                             <Button style={{"width":"40%"}} type="submit">submit</Button>
                         </Form>
                     </GridColumn>
-                    {/* <GridColumn> {videoUrl? <ReactPlayer url={videoUrl} controls={true} />: <h1>video preview</h1> }</GridColumn> */}
+                    <GridColumn> {videoUrl? <ReactPlayer url={videoUrl} controls={true} />: <h1>video preview</h1> }</GridColumn>
                 </GridRow>
             </Grid>
         </Segment>

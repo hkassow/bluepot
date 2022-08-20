@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
-// import ReactPlayer from "react-player";
+import ReactPlayer from "react-player";
 import { List, Header, Grid, GridColumn, Segment, Icon, Button, Menu, Comment, Form} from "semantic-ui-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
@@ -101,7 +101,7 @@ const Post = () => {
             </GridColumn>
             <GridColumn >
                 <div className="videoWrapper">
-                    {/* <ReactPlayer className="videoPlayer" height={'100%'} url={post.video_url} controls={true} width='100%'></ReactPlayer> */}
+                    <ReactPlayer className="videoPlayer" height={'100%'} url={post.video_url} controls={true} width='100%'></ReactPlayer>
                 </div>
                 <Segment textAlign="center">{post.description}</Segment>
                 <Segment>

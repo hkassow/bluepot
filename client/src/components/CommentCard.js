@@ -4,7 +4,7 @@ import { UserContext } from "../context/user";
 import { useContext } from "react";
 
 const CommentCard = ({comment, deleteComment}) => {
-    const { user, setUser } = useContext(UserContext)
+    const { user } = useContext(UserContext)
     const [deleteConfirm, setDeleteConfirm] = useState(false)
     const [editConfirm, setEditConfirm] = useState(false)
     const [text, setText] = useState(comment.text)
