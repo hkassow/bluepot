@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactPlayer from 'react-player'
 import { useNavigate } from "react-router-dom";
 import { Card, Menu } from "semantic-ui-react";
+import { UserContext } from "../context/user";
+import VoteButton from "./VoteButton";
 
 const PostCard = ({post}) => {
     const navigate = useNavigate()
+    const {user} = useContext(UserContext)
     const handleClick = () => {
         navigate(`/post/${post.id}`, {replace: true, state: post})
     }
@@ -12,7 +15,7 @@ const PostCard = ({post}) => {
         <>
             <Card fluid>
                 <Card.Content as={Menu}>
-                    <Card.Header as={Menu.Item}>{post.title}</Card.Header>
+                    <Card.Header as={Menu.Item} onClick={handleClick}>{post.title}</Card.Header>
                     <Card.Header as={Menu.Item} position={"right"}>{post.user.username}</Card.Header>
                 </Card.Content>
                 <Card.Content>
@@ -27,7 +30,7 @@ const PostCard = ({post}) => {
                         })}
                     </Menu.Menu>
                     <Menu.Menu position="right" width={2}>
-                        <Card.Header as={Menu.Item} >rating: {post.rating}</Card.Header>
+                        {user? <VoteButton rating={post.rating} postId={post.id}/> :<Card.Header as={Menu.Item} >rating: {post.rating}</Card.Header>}
                         <Card.Header as={Menu.Item} onClick={handleClick} >comments</Card.Header>
                     </Menu.Menu>
                 </Card.Content>

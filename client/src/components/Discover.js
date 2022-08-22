@@ -64,7 +64,7 @@ const Discover = () => {
                 <GridColumn >
                 {displayPosts}
                 </GridColumn>
-                <GridColumn width={3}> hi </GridColumn>  
+                <GridColumn width={3}></GridColumn>  
             </GridRow>
         </Grid>
         

@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 import { useContext } from "react";
 import CommentCard from "./CommentCard";
+import VoteButton from "./VoteButton";
 
 const Post = () => {
     const post = useLocation().state
@@ -69,7 +70,7 @@ const Post = () => {
     return (
         <>
         <NavBar/>
-        <Header textAlign="center" size="huge" style={{"padding":"50px"}}>{post.title}</Header>
+        <br/><br/><br/>
         <Grid columns={"equal"}>
             <GridColumn width={3}>
                 <Segment basic style={{position:"sticky", top:"25%"}}>
@@ -104,13 +105,10 @@ const Post = () => {
                     <ReactPlayer className="videoPlayer" height={'100%'} url={post.video_url} controls={true} width='100%'></ReactPlayer>
                 </div>
                 <Segment textAlign="center">{post.description}</Segment>
+                {user? 
                 <Segment>
-                <Menu fluid widths={2} >
-                    <Menu.Item>
-                        <Icon className="chevron up"></Icon>
-                        {votes}
-                        <Icon className="chevron down" style={{"marginLeft":"5px"}}></Icon>
-                    </Menu.Item>
+                 <Menu fluid widths={2} >
+                    <VoteButton postId={post.id} rating={votes}/>
                     
                     <Menu.Item onClick={() => setCreateComment(!createComment)}>create comment</Menu.Item>
                 </Menu>
@@ -123,18 +121,19 @@ const Post = () => {
                 :
                 <></>}
                 </Segment>
+                : <></>}
+                {comments.length === 0?  <></>:
                 <Segment>
                     <br></br>
                     <Comment.Group>
-                        {comments.length === 0? <></>
-                        :
-                        comments.map((comment) => <CommentCard deleteComment={deleteComment} comment={comment}/>)
-                        }
+                        {comments.map((comment) => <CommentCard deleteComment={deleteComment} comment={comment}/>)}
                     </Comment.Group>
-                </Segment>
+                </Segment>}
             </GridColumn>
             <GridColumn width={3}>
                 <Menu fluid vertical style={{"textAlign": "center"}}>
+                    <Menu.Item as={Header}>{post.title}</Menu.Item>
+                    <Menu.Item >posted by: <Header style={{display: "inline"}}>{post.user.username}</Header></Menu.Item>
                     <Menu.Item as={Header} >tags</Menu.Item>
                     {post.associated_tags.length === 0? <></>: post.associated_tags.map(tag => {
                                 return <Menu.Item>{tag.name}</Menu.Item>

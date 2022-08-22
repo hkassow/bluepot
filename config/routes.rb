@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :comments, except: [:index]
   resources :follows, only: [:create]
   resources :associated_tags, only: [:create, :destroy]
+  resources :votes, only: [:index, :create, :destroy, :update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
