@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom"
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom"
 import Home from "./components/Home";
 import Discover from "./components/Discover";
 import CreatePost from "./components/CreatePost";
@@ -7,6 +7,7 @@ import NewSession from "./components/NewSession";
 import Post from "./components/Post";
 import EditPost from "./components/EditPost";
 import { PostProvider } from "./context/posts";
+import UserPage from "./components/UserPage";
 
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
             <Route path='/login' element = {<NewSession />} />
             <Route path='/post/:id' element = {<Post/>} />
             <Route path='/edit-post' element = {<EditPost />} />
+            <Route path='/user/:username' element = {<UserPage/>} />
+            <Route path='*' element ={<Navigate to="/" />
+} />
         </Routes>
       </BrowserRouter>
       </PostProvider>

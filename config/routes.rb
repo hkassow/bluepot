@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :votes, only: [:index, :create, :destroy, :update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  get "/other", to: "users#show_other"
+
   # Defines the root path route ("/")
   # root "articles#index"
   delete '/follows', to: 'follows#destroy'

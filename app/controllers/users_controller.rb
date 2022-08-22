@@ -7,6 +7,10 @@ class UsersController < ApplicationController
           render json: { error: "Not authorized" }, status: :unauthorized
         end
       end
+      def show_other
+        user = User.find_by(username: params[:username])
+        render json: user, serializer: UserWithCommentsAndPostsSerializer
+      end
       def create
         user = User.create(user_params)
         if user.valid?
@@ -14,6 +18,10 @@ class UsersController < ApplicationController
         else
           render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
+      end
+      def destroy
+        user = User.find(params[:id])
+        user.destroy
       end
     
       private

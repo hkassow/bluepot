@@ -9,7 +9,7 @@ const PostCard = ({post}) => {
     const navigate = useNavigate()
     const {user} = useContext(UserContext)
     const handleClick = () => {
-        navigate(`/post/${post.id}`, {replace: true, state: post})
+        navigate(`/post/${post.id}`, {state: post})
     }
     return (
         <>

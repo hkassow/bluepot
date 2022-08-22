@@ -7,6 +7,7 @@ import { UserContext } from "../context/user";
 import { useContext } from "react";
 import CommentCard from "./CommentCard";
 import VoteButton from "./VoteButton";
+import FollowButton from "./FollowButton";
 
 const Post = () => {
     const post = useLocation().state
@@ -54,19 +55,6 @@ const Post = () => {
     const deleteComment = (id) => {
         setComments(comments.filter(comment => comment.id !== id))
     }
-    const handleFollow = () => {
-        const follow = {
-            follower_id: user.id,
-            followee_id: post.user.id
-        }
-        fetch('/follows',{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(follow)
-        })
-    }
     return (
         <>
         <NavBar/>
@@ -91,7 +79,7 @@ const Post = () => {
                     </Button.Group>
                     }
                     </>:
-                    <Menu.Item onClick={handleFollow}>follow: {post.user.username}</Menu.Item>
+                    <FollowButton usernameToFollow={post.user.username} idToFollow={post.user.id}/>
                     }
                 </>
                 :
@@ -134,6 +122,9 @@ const Post = () => {
                 <Menu fluid vertical style={{"textAlign": "center"}}>
                     <Menu.Item as={Header}>{post.title}</Menu.Item>
                     <Menu.Item >posted by: <Header style={{display: "inline"}}>{post.user.username}</Header></Menu.Item>
+                </Menu>
+                <br></br>
+                <Menu fluid vertical style={{"textAlign": "center"}}>
                     <Menu.Item as={Header} >tags</Menu.Item>
                     {post.associated_tags.length === 0? <></>: post.associated_tags.map(tag => {
                                 return <Menu.Item>{tag.name}</Menu.Item>
