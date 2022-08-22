@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { Accordion, Icon, Container, Segment, Button, Menu} from "semantic-ui-react";
+import { Accordion, Icon, Container, Segment, Button, Menu, Input} from "semantic-ui-react";
 import { UserContext } from "../context/user";
 
 const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
@@ -9,6 +9,8 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
     const [tags, setTags] = useState(false)
     const [displayTags, setDisplayTags] = useState([])
     const [userTags, setUserTags] = useState([])
+    const [filter, setFilter] = useState('')
+    const [filterdTags, setFilteredTags] = useState(displayTags)
     const navigate = useNavigate()
     const handleClick = (e, titleProps) => {
       const { index } = titleProps
@@ -65,7 +67,7 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
     useEffect(() => {
       if (tags && user) {
           setDisplayTags(tags.map(tag => {
-            if (user.associated_tags.some((userTag) => userTag.name === tag.name)) {
+            if ((user.associated_tags.some((userTag) => userTag.name === tag.name)) || (!tag.name.includes(filter))) {
               return <></>
             } else {
               return (
@@ -77,7 +79,10 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
             }
           }))
       }
-    },[tags, user])
+    },[tags, user, filter])
+    const handleFilter = (e, {value}) => {
+      setFilter(value)
+    }
     if (!user) {
       return (
       <Segment as={Button} onClick ={() => (navigate('/login'))} >
@@ -131,6 +136,7 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 2} >
             <Container style={{maxHeight:"400px", "overflow-y": "scroll"}}>
+            <Input fluid icon='search' placeholder='Search tags...' onChange={handleFilter}></Input>
             {displayTags}
             </Container>
           </Accordion.Content>
