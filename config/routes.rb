@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   delete "/logout", to: "sessions#destroy"
 
+  match '*all', to: 'staticpage#index', via: [:get]
 end
