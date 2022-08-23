@@ -44,7 +44,7 @@ const Discover = () => {
     return (
         <>
         <NavBar/>
-        <Header textalign="centered" size="huge" style={{"padding":"50px", position: "sticky", top:"5%"}}> Discover </Header>
+        <Header size="huge" style={{"padding":"50px", position: "sticky", top:"5%"}}> discover </Header>
         <Grid columns={"equal"}>
             <GridRow>
                 <GridColumn width={3}>

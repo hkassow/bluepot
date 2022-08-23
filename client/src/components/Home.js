@@ -42,7 +42,7 @@ const Home = () => {
     return (
         <>
         <NavBar/>
-        <Header textAlign="centered" size="huge" style={{"padding":"50px"}}> home top space </Header>
+        <Header size="huge" style={{"padding":"50px", position: "sticky", top:"5%"}}> home  </Header>
         <Grid columns={"equal"}>
             <GridColumn width={3}>
                 <TabSideBar handleTagUpdate={handleTagUpdate} handleFollowUpdate={handleFollowUpdate}/>
