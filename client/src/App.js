@@ -19,11 +19,11 @@ function App() {
       <BrowserRouter>
           <Routes>
             <Route path='/' element = {<Home />}/>
-            <Route path='/new' element = {<Discover />} />
-            <Route path='/create-post' element = {<CreatePost />} />
-            <Route path='/login' element = {<NewSession />} />
+            <Route exact path='/new' element = {<Discover />} />
+            <Route exact path='/create-post' element = {<CreatePost />} />
+            <Route exact path='/login' element = {<NewSession />} />
             <Route path='/post/:id' element = {<Post/>} />
-            <Route path='/edit-post' element = {<EditPost />} />
+            <Route exact path='/edit-post' element = {<EditPost />} />
             <Route path='/user/:username' element = {<UserPage/>} />
             <Route path='*' element ={<Navigate to="/" />
 } />
