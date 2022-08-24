@@ -20,7 +20,7 @@ const NewSession = () => {
         .then(data => setPosts(data))
     },[])
     useEffect(() => {
-        if (posts && !displayPost) {
+        if ((posts?.length !== 0) && !displayPost) {
             setDisplayPost(posts[0])
             setDisplayTag(posts[0]["associated_tags"][0])
         }
