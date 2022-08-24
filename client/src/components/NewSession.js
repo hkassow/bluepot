@@ -19,10 +19,14 @@ const NewSession = () => {
         .then(r => r.json())
         .then(data => setPosts(data))
     },[])
+    console.log(posts)
     useEffect(() => {
-        if ((posts?.length !== 0) & !displayPost) {
-            setDisplayPost(posts[0])
-            setDisplayTag(posts[0]["associated_tags"][0])
+        if (posts){
+            if (posts.length !==0) {
+                console.log(posts)
+                setDisplayPost(posts[0])
+                setDisplayTag(posts[0]["associated_tags"][0]) 
+            }
         }
     },[posts])
 
