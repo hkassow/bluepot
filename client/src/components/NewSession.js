@@ -19,13 +19,12 @@ const NewSession = () => {
         .then(r => r.json())
         .then(data => setPosts(data))
     },[])
-    // console.log(posts)
-    // useEffect(() => {
-    //     if ((posts?.length !== 0) & !displayPost) {
-    //         setDisplayPost(posts[0])
-    //         setDisplayTag(posts[0]["associated_tags"][0])
-    //     }
-    // },[posts])
+    useEffect(() => {
+        if ((posts?.length !== 0) & !displayPost) {
+            setDisplayPost(posts[0])
+            setDisplayTag(posts[0]["associated_tags"][0])
+        }
+    },[posts])
 
     const moveDisplay = () => {
         setDisplayPost(posts[counter])
