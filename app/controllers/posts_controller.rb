@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     def update
         find_post
         @post.update(post_params)
-        render json: post, status: :ok
+        render json: @post, status: :ok
     end
     def destroy
         find_post
