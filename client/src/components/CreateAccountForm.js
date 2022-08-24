@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Divider, Form, Message} from "semantic-ui-react";
+import { Menu, Divider, Form, Message, Button} from "semantic-ui-react";
 import { UserContext } from "../context/user";
+import { NavLink } from "react-router-dom";
 const CreateAccountForm = () => {
     const navigate = useNavigate()
     const {setUser} = useContext(UserContext)
@@ -99,7 +100,10 @@ const CreateAccountForm = () => {
             <Message fluid style={{"padding":"14px", "margin": "0"}} error content= {errorMessages}/>
             </Form.Field>
             :
-            <Form.Button fluid type="submit" >Create Account</Form.Button>
+            <Menu widths={2}>
+                <Button as={Menu.Item} type="submit">Create Account</Button>
+                <Menu.Item as={NavLink} to="/">return</Menu.Item>
+            </Menu>
             }
         </Form>
         </>

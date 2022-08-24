@@ -1,6 +1,6 @@
 import {useState, useContext} from "react"
 import { useNavigate } from "react-router-dom";
-import { Divider, Form, Message, Button } from "semantic-ui-react";
+import { Divider, Form, Message, Button, Menu } from "semantic-ui-react";
 import { UserContext } from "../context/user";
 import { NavLink } from "react-router-dom";
 
@@ -70,10 +70,10 @@ const LoginForm = () => {
       <Message style={{"padding":"14px", "margin": "0"}} error content={errorMessages}/>
       :
       <>
-      <Button.Group widths={2}>
-        <Button fluid type="submit">Login</Button>
-        <Button as={NavLink} to="/">return</Button>
-      </Button.Group>
+      <Menu widths={2}>
+        <Button as={Menu.Item} type="submit">Login</Button>
+        <Menu.Item as={NavLink} to="/">return</Menu.Item>
+      </Menu>
       </>
       }
     </Form>

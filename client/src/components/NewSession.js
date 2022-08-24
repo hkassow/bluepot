@@ -37,11 +37,13 @@ const NewSession = () => {
         <Grid columns={"equal"} divided verticalAlign="middle" style={{height: "100%"}}>
             <GridRow> 
             <GridColumn>
+                <Container style={{'width':'70%'}}>
                 <Header textAlign="center">All your favorite {displayTag["name"]} clips in one place!</Header>
                 <br/><br/><br/>
                 <div>
-                {displayPost? <ReactPlayer style={{"margin-left":"auto", "margin-right":"auto", }} height="100%" url={displayPost.video_url} controls={true} onEnded={() => moveDisplay()} playing={true} volume={0}/>: <></> }
+                {displayPost? <ReactPlayer style={{"margin-left":"auto", "margin-right":"auto", }} width='fit-content' height="100%" url={displayPost.video_url} controls={true} onEnded={() => moveDisplay()} playing={true} volume={0}/>: <></> }
                 </div>
+                </Container>
             </GridColumn>
             <GridColumn style={{height: "100vh", "display": "flex"}}>
                 <Container style={{margin: "auto", width:"50%"}}>
