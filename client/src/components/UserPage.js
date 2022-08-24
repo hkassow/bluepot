@@ -20,7 +20,7 @@ const UserPage = () => {
             if (r.ok) {
                 r.json().then(d => setPageOwner(d))
             } else {
-                r,json().then(error => console.error(erro))
+                r.json().then(error => console.error(error))
             }
         })
     },[])
