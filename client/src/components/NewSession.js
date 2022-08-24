@@ -19,8 +19,9 @@ const NewSession = () => {
         .then(r => r.json())
         .then(data => setPosts(data))
     },[])
+    console.log(posts)
     useEffect(() => {
-        if ((posts?.length !== 0) && !displayPost) {
+        if ((posts?.length !== 0) & !displayPost) {
             setDisplayPost(posts[0])
             setDisplayTag(posts[0]["associated_tags"][0])
         }
@@ -31,7 +32,6 @@ const NewSession = () => {
         setDisplayTag(posts[counter]["associated_tags"][0])
         setCounter((counter + 1)%3)
     }
-    console.log(posts)
     return (
         <Grid columns={"equal"} divided verticalAlign="middle" style={{height: "100%"}}>
             <GridRow> 
