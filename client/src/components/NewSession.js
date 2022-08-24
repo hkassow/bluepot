@@ -24,7 +24,6 @@ const NewSession = () => {
             setDisplayPost(posts[0])
             setDisplayTag(posts[0]["associated_tags"][0])
         }
-        console.log(posts)
     },[posts])
 
     const moveDisplay = () => {
@@ -32,7 +31,7 @@ const NewSession = () => {
         setDisplayTag(posts[counter]["associated_tags"][0])
         setCounter((counter + 1)%3)
     }
-    console.log(counter)
+    console.log(posts)
     return (
         <Grid columns={"equal"} divided verticalAlign="middle" style={{height: "100%"}}>
             <GridRow> 
