@@ -7,6 +7,12 @@ class PostsController < ApplicationController
         find_post
         render json: @post
     end
+    def show_top_rated
+        hash = Vote.select(:value, :post_id).group(:post_id).order('sum_value DESC').limit(1).sum(:value)
+        top_posts = []
+        hash.each_key{|id| top_posts.push(Post.find(id))}
+        render json: top_posts
+    end
     def create
         post = Post.create!(post_params)
         tags = params["post"]["tags"].split(',').map{|tag| Tag.find_by(name: tag)}

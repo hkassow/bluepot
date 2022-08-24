@@ -23,7 +23,10 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
       fetch(`/associated_tags/${tagID}`,{
         method: "DELETE"
       }).then(r => r.json())
-      .then(d => handleTagUpdate(d))
+      .then(d => {
+        setUserTags(d)
+        handleTagUpdate(d)
+        })
       e.target.parentNode.remove()
     }
     const handleDeleteFollow = (e, followeeID) => {
@@ -49,6 +52,8 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
         setUserTags(d)
         handleTagUpdate(d)
       })
+      console.log(e.target)
+      console.log(e.target.parentNode)
       e.target.parentNode.remove()
     }
     useEffect(() => {
@@ -71,25 +76,28 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
               return <></>
             } else {
               return (
-              <Menu widths={2}>
-                <Menu.Item >{tag.name}</Menu.Item>
-                <Menu.Item position="right" onClick={(e) => handleAddTag(e, tag.id)}>+</Menu.Item>
-              </Menu>
+              <div style={{"margin-top": "14px" , "margin-bottom": "14px"}}>
+                <Menu.Item as={Menu} fluid widths={2}>
+                  <Menu.Item >{tag.name}</Menu.Item>
+                  <Menu.Item position="right" onClick={(e) => handleAddTag(e, tag.id)}>+</Menu.Item>
+                </Menu.Item>
+             </div>              
             )
             }
           }))
       }
-    },[tags, user, filter])
+    },[tags, userTags, filter])
     const handleFilter = (e, {value}) => {
       setFilter(value)
     }
     if (!user) {
       return (
-      <Segment as={Button} onClick ={() => (navigate('/login'))} >
+      <Segment as={Button} onClick ={() => (navigate('/login'))} style={{position:"sticky", top:"20%"}} >
         login to customize your home view and upload posts
       </Segment>
       )
     }
+    console.log(userTags)
       return (
         <Accordion styled style={{position:"sticky", top:"20%"}}>
           <Accordion.Title
@@ -102,10 +110,11 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
           {user.following.map(followee => 
-            <Menu widths={2}>
-              <Menu.Item >{followee.username}</Menu.Item>
-              <Menu.Item position="right" onClick={(e) => handleDeleteFollow(e, followee.id)}>x</Menu.Item>
-            </Menu>)}
+              <Menu widths={2}>
+                  <Menu.Item >{followee.username}</Menu.Item>
+                  <Menu.Item position="right" onClick={(e) => handleDeleteFollow(e, followee.id)}>x</Menu.Item>
+              </Menu>
+          )}
           </Accordion.Content>
   
           <Accordion.Title
@@ -119,10 +128,11 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
           <Accordion.Content active={activeIndex === 1}>
           <Container style={{maxHeight:"400px", "overflow-y": "scroll"}}>
             {userTags.map(tag => 
-            <Menu widths={2}>
-              <Menu.Item >{tag.name}</Menu.Item>
-              <Menu.Item position="right" onClick={(e) => handleDeleteTag(e, tag.id)}>x</Menu.Item>
-            </Menu>)}
+              <Menu widths={2}>
+                <Menu.Item >{tag.name}</Menu.Item>
+                <Menu.Item position="right" onClick={(e) => handleDeleteTag(e, tag.id)}>x</Menu.Item>
+              </Menu>
+              )}
           </Container>
           </Accordion.Content>
 

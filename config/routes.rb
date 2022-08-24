@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   get "/other", to: "users#show_other"
-
+  get "/show_top", to: "posts#show_top_rated"
   # Defines the root path route ("/")
   # root "articles#index"
   delete '/follows', to: 'follows#destroy'

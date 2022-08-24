@@ -1,11 +1,15 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../context/user";
 import { Grid, GridColumn, GridRow, Menu, Button, Sidebar, Segment, Header} from "semantic-ui-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 const NavBar = () => {
     const { user, setUser } = useContext(UserContext)
     const [visible, setVisible] = useState(false)
+    const navigate = useNavigate()
+    const handleUserNav = () => {
+        navigate(`/user/${user.username}`)
+    }
     return (
         <Segment basic style={{padding: 0,position:"sticky", top: 0, "zIndex":10}}>
         <Grid columns={3}>
@@ -35,7 +39,7 @@ const NavBar = () => {
                         width='thin'>
                             {user?<>
                             <Menu.Item as={Header}>{user.username}</Menu.Item>
-                            <Menu.Item>User Page</Menu.Item>
+                            <Menu.Item onClick={handleUserNav}>User Page</Menu.Item>
                             <LogoutButton></LogoutButton>
                             <Menu.Item><br></br></Menu.Item>
                             </>:

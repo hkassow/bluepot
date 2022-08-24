@@ -8,15 +8,18 @@ import VoteButton from "./VoteButton";
 const PostCard = ({post}) => {
     const navigate = useNavigate()
     const {user} = useContext(UserContext)
-    const handleClick = () => {
+    const handlePostNav = () => {
         navigate(`/post/${post.id}`, {state: post})
+    }
+    const handleUserNav = () => {
+        navigate(`/user/${post.user.username}`)
     }
     return (
         <>
             <Card fluid>
                 <Card.Content as={Menu}>
-                    <Card.Header as={Menu.Item} onClick={handleClick}>{post.title}</Card.Header>
-                    <Card.Header as={Menu.Item} position={"right"}>{post.user.username}</Card.Header>
+                    <Card.Header as={Menu.Item} onClick={handlePostNav}>{post.title}</Card.Header>
+                    <Card.Header as={Menu.Item} position={"right"} onClick={handleUserNav}>{post.user.username}</Card.Header>
                 </Card.Content>
                 <Card.Content>
                     <div className="videoWrapper" >
@@ -31,7 +34,7 @@ const PostCard = ({post}) => {
                     </Menu.Menu>
                     <Menu.Menu position="right" width={2}>
                         {user? <VoteButton rating={post.rating} postId={post.id}/> :<Card.Header as={Menu.Item} >rating: {post.rating}</Card.Header>}
-                        <Card.Header as={Menu.Item} onClick={handleClick} >comments</Card.Header>
+                        <Card.Header as={Menu.Item} onClick={handlePostNav} >comments</Card.Header>
                     </Menu.Menu>
                 </Card.Content>
             </Card>

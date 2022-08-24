@@ -28,6 +28,9 @@ const Post = () => {
     const handleEditNavigate = () => {
         navigate('/edit-post', {replace: true, state: post})
     }
+    const handleLoginNav = () => {
+        navigate('/login')
+    }
     const handleDelete = () => {
         fetch(`/posts/${post.id}`,{
             method:"DELETE"
@@ -83,7 +86,7 @@ const Post = () => {
                     }
                 </>
                 :
-                    <Menu.Item>Login to comment or rate</Menu.Item>}
+                    <Menu.Item onClick={handleLoginNav}>Login to comment or rate</Menu.Item>}
                 </Menu>
                 </Segment>
                 </Segment>
@@ -92,7 +95,6 @@ const Post = () => {
                 <div className="videoWrapper">
                     <ReactPlayer className="videoPlayer" height={'100%'} url={post.video_url} controls={true} width='100%'></ReactPlayer>
                 </div>
-                <Segment textAlign="center">{post.description}</Segment>
                 {user? 
                 <Segment>
                  <Menu fluid widths={2} >
@@ -119,9 +121,10 @@ const Post = () => {
                 </Segment>}
             </GridColumn>
             <GridColumn width={3}>
-                <Menu fluid vertical style={{"textAlign": "center"}}>
+                <Menu fluid vertical>
                     <Menu.Item as={Header}>{post.title}</Menu.Item>
                     <Menu.Item >posted by: <Header style={{display: "inline"}}>{post.user.username}</Header></Menu.Item>
+                    <Menu.Item>{post.description}</Menu.Item>
                 </Menu>
                 <br></br>
                 <Menu fluid vertical style={{"textAlign": "center"}}>
