@@ -20,7 +20,7 @@ const UserPage = () => {
             if (r.ok) {
                 r.json().then(d => setPageOwner(d))
             } else {
-                console.log('bad')
+                r,json().then(error => console.error(erro))
             }
         })
     },[])
@@ -39,8 +39,6 @@ const UserPage = () => {
         })
 
     }
-    console.log(posts)
-    console.log(comments)
     return (
         <>
         <NavBar/>

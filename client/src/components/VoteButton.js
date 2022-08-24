@@ -29,7 +29,6 @@ const VoteButton = ({rating, postId}) => {
                 setCurrentRating(rating)
                 setVote(false)})
         } else if (vote) {
-            console.log(name, typeof name)
             fetch(`/votes/${vote.id}`, {
                 method: "PATCH",
                 headers: {

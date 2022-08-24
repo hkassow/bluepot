@@ -9,7 +9,6 @@ const CreatePostForm = () => {
     const [tags, setTags] = useState(null)
     const [valueArray, setValueArray] = useState({value: []})
     const navigate = useNavigate()
-    console.log(user)
     const handleSubmit = (e) => {
         e.preventDefault()
         const formData = new FormData()
@@ -18,7 +17,6 @@ const CreatePostForm = () => {
         formData.append('post[description]', e.target.descriptionInput.value)
         formData.append('post[user_id]', user.id)
         formData.append('post[tags]', valueArray.value)
-        console.log(formData.getAll("post[tags]"))
         fetch('/posts', {
             method: "POST",
             body: formData

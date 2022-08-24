@@ -52,8 +52,6 @@ const EditPostForm = ({post}) => {
     const handleSimpleChange = (e, {value, name}) => {
         setSimpleFormData({...simpleFormData, [name]:value})
     }
-    console.log(valueArray)
-    console.log(simpleFormData)
     return (
         <Segment>
             <Grid>

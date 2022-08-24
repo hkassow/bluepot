@@ -41,7 +41,6 @@ const Home = () => {
                         <></>
                     }}))
             } else {
-                console.log('hi')
                 setDisplayPosts(posts.map(post => {return <PostCard post={post}/>}))
             }
         }

@@ -40,7 +40,6 @@ const CommentCard = ({comment, deleteComment}) => {
         .then(d => post = d)
         navigate(`/post/${post.id}`, {state: post})
     }
-    console.log(comment)
     return (
         <Comment>
             {deleteConfirm?

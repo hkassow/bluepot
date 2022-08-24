@@ -17,7 +17,6 @@ const Discover = () => {
         .then(tags => tags.map(tag => {return {key:tag.id, text:tag.name, value:tag.name}}))
         .then(tags => setTags(tags))
     },[])
-    console.log(valueArray)
     useEffect(() => {
         if (showAll || (valueArray['value'].length === 0)) {
             setDisplayPosts(posts.map(post => { return <PostCard post={post}/>}))
