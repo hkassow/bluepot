@@ -42,14 +42,6 @@ const CommentCard = ({comment, deleteComment}) => {
     }
     return (
         <Comment>
-            {deleteConfirm?
-            <>
-            <Button.Group widths={2}>
-                <Button as={Menu.Item} onClick={() => setDeleteConfirm(false)}>Cancel</Button>
-                <Button.Or />
-                <Button as={Menu.Item} onClick={() => handleDelete()} negative>Confirm Delete</Button>
-            </Button.Group></>
-            :
             <>
             <Comment.Author >{deleteComment?comment.associated_username:comment.post_name}</Comment.Author>
             {editConfirm? 
@@ -62,16 +54,28 @@ const CommentCard = ({comment, deleteComment}) => {
             <>
                 <Comment.Content>{text}</Comment.Content>
                 <Comment.Actions>
+                <div>
+                {deleteConfirm?
+                <>
+                <Button.Group widths={2}>
+                    <Button as={Menu.Item} onClick={() => setDeleteConfirm(false)}>Cancel</Button>
+                    <Button.Or />
+                    <Button as={Menu.Item} onClick={() => handleDelete()} negative>Confirm Delete</Button>
+                </Button.Group></>
+                :
+                <>
                 {user.id === comment.user_id?
                 <>
                     <Comment.Action onClick={() => setEditConfirm(true)} style={{display:editConfirm?"none":"inline"}}>edit</Comment.Action>
                     <Comment.Action  onClick={() => setDeleteConfirm(true)} style={{display:editConfirm?"none":"inline"}}>delete</Comment.Action>
                 </>
                 :<></>}
+                </>}
+                </div>
                  {deleteComment? <></> : <Comment.Action  onClick={handleClick} style={{display:editConfirm?"none":"inline"}}>view</Comment.Action> }
                 </Comment.Actions>
             </>}
-            </>}
+            </>
         </Comment>
     )
 }

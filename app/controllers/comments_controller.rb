@@ -15,7 +15,6 @@ class CommentsController < ApplicationController
     def destroy
         comment = Comment.find(params[:id])
         comment.destroy
-        debugger
     end
     private 
     def comment_params
