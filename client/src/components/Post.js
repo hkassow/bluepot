@@ -70,18 +70,19 @@ const Post = () => {
                 <Segment basic style={{position:"sticky", top:"25%"}}>
                 <Button onClick={() => setVisible(!visible)} style={{background: "white"}}> post options </Button>
                 <Segment style={{display: (visible? "block":"none")}}>
-                <Menu vertical fluid style={{textAlign:"center"}} >
+                
                 {user?
                 <>
                     {user.id == post.user.id?
                     <>
                     <Menu.Item as={Button} fluid onClick={() => handleEditNavigate()}>edit</Menu.Item>
+                    <br></br>
                     {!deleteConfirm? <Menu.Item as={Button} fluid onClick={() => setDeleteConfirm(true)}>delete</Menu.Item> 
                     :
-                    <Button.Group widths={2}>
+                    <Button.Group  widths={2}>
                         <Button as={Menu.Item} onClick={() => setDeleteConfirm(false)}>Cancel</Button>
                         <Button.Or />
-                        <Button as={Menu.Item} onClick={() => handleDelete()} positive>Confirm Delete</Button>
+                        <Button as={Menu.Item} onClick={() => handleDelete()} negative>Confirm Delete</Button>
                     </Button.Group>
                     }
                     </>:
@@ -90,7 +91,7 @@ const Post = () => {
                 </>
                 :
                     <Menu.Item onClick={handleLoginNav}>Login to comment or rate</Menu.Item>}
-                </Menu>
+              
                 </Segment>
                 </Segment>
             </GridColumn>

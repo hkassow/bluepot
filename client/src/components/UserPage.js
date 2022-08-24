@@ -68,7 +68,7 @@ const UserPage = () => {
                             <Button.Group widths={2}>
                                 <Button as={Menu.Item} onClick={() => setDeleteConfirm(false)}>Cancel</Button>
                                 <Button.Or />
-                                <Button as={Menu.Item} onClick={() => handleDelete()} color="red">Confirm Delete</Button>
+                                <Button as={Menu.Item} onClick={() => handleDelete()} negative>Confirm Delete</Button>
                             </Button.Group>
                         </>
                         :<Button onClick={() => setDeleteConfirm(true)}>delete account</Button>}

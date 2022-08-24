@@ -47,7 +47,7 @@ const CommentCard = ({comment, deleteComment}) => {
             <Button.Group widths={2}>
                 <Button as={Menu.Item} onClick={() => setDeleteConfirm(false)}>Cancel</Button>
                 <Button.Or />
-                <Button as={Menu.Item} onClick={() => handleDelete()} positive>Confirm Delete</Button>
+                <Button as={Menu.Item} onClick={() => handleDelete()} negative>Confirm Delete</Button>
             </Button.Group></>
             :
             <>

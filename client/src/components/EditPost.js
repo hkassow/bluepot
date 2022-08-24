@@ -12,12 +12,11 @@ const EditPost = () => {
         <Header textAlign="centered" size="huge" style={{"padding":"50px"}}> home top space </Header>
         <Grid columns={"equal"}>
             <GridColumn width={2}>
-                hi
             </GridColumn>
             <GridColumn >
                 <EditPostForm post={post}/>
             </GridColumn>
-            <GridColumn width={2}> hi </GridColumn>  
+            <GridColumn width={2}></GridColumn>  
         </Grid>
         </>
     )
