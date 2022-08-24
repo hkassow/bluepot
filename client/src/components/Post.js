@@ -17,13 +17,16 @@ const Post = () => {
     const [createComment, setCreateComment] = useState(false)
     const [comments, setComments] = useState(post.comments)
     const [votes, setVotes] = useState(post.rating)
+    const [associated_tags, setAssociated_tags] = useState([])
     const navigate = useNavigate()
     useEffect(() => {
         fetch(`/posts/${post.id}`)
         .then(r => r.json())
         .then(fetchedPost => {
             setComments(fetchedPost.comments)
-            setVotes(fetchedPost.rating)})
+            setVotes(fetchedPost.rating)
+            setAssociated_tags(fetchedPost.associated_tags)
+        })
     }, [])
     const handleEditNavigate = () => {
         navigate('/edit-post', {replace: true, state: post})
@@ -129,7 +132,7 @@ const Post = () => {
                 <br></br>
                 <Menu fluid vertical style={{"textAlign": "center"}}>
                     <Menu.Item as={Header} >tags</Menu.Item>
-                    {post.associated_tags.length === 0? <></>: post.associated_tags.map(tag => {
+                    {associated_tags === 0? <></>:associated_tags.map(tag => {
                                 return <Menu.Item>{tag.name}</Menu.Item>
                         })}
                 </Menu>
