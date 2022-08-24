@@ -40,7 +40,7 @@ const NewSession = () => {
                 <Header textAlign="center">All your favorite {displayTag["name"]} clips in one place!</Header>
                 <br/><br/><br/>
                 <div>
-                {displayPost? <ReactPlayer style={{"margin-left":"auto", "margin-right":"auto", }} height="100%" url={displayPost.video_url} controls={true} onEnded={() => moveDisplay()} playing={true} volume={0}/>: <h1>no video preview</h1> }
+                {displayPost? <ReactPlayer style={{"margin-left":"auto", "margin-right":"auto", }} height="100%" url={displayPost.video_url} controls={true} onEnded={() => moveDisplay()} playing={true} volume={0}/>: <></> }
                 </div>
             </GridColumn>
             <GridColumn style={{height: "100vh", "display": "flex"}}>
