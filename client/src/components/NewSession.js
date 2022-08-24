@@ -24,6 +24,7 @@ const NewSession = () => {
             setDisplayPost(posts[0])
             setDisplayTag(posts[0]["associated_tags"][0])
         }
+        console.log(posts)
     },[posts])
 
     const moveDisplay = () => {
