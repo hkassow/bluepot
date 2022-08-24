@@ -19,7 +19,7 @@ const PostCard = ({post}) => {
             <Card fluid>
                 <Card.Content as={Menu}>
                     <Card.Header as={Menu.Item} onClick={handlePostNav}>{post.title}</Card.Header>
-                    <Card.Header as={Menu.Item} position={"right"} onClick={handleUserNav}>{post.user.username}</Card.Header>
+                    <Card.Header as={Menu.Item} position={"right"} onClick={handleUserNav}>posted by: {post.user.username}</Card.Header>
                 </Card.Content>
                 <Card.Content>
                     <div className="videoWrapper" >

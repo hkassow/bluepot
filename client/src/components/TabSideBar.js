@@ -19,15 +19,31 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
       setActiveIndex(newIndex)
     }
     const handleDeleteTag = (e, tagID) => {
-      const path = e.target.id
+      const name = e.target.id
       fetch(`/associated_tags/${tagID}`,{
         method: "DELETE"
-      }).then(r => r.json())
-      .then(d => {
-        setUserTags(d)
-        handleTagUpdate(d)
-        })
-      e.target.parentNode.remove()
+      })
+      .then(r => { if (r.ok) {
+        r.json()
+        .then(d => {
+          setUserTags(d)
+          handleTagUpdate(d)
+          })
+      } else {
+        r.json().then(d => console.log(d))
+      }}
+      )
+
+      // const tag = () => {
+      //   return (
+      //     <div style={{"margin-top": "14px" , "margin-bottom": "14px"}}>
+      //           <Menu.Item as={Menu} fluid widths={2}>
+      //             <Menu.Item >{name}</Menu.Item>
+      //             <Menu.Item position="right" onClick={(e) => handleAddTag(e, tagID)}>+</Menu.Item>
+      //           </Menu.Item>
+      //     </div> 
+      //   )
+      // }
     }
     const handleDeleteFollow = (e, followeeID) => {
       fetch(`/follows?follower_id=${user.id}&followee_id=${followeeID}`, {
@@ -52,8 +68,6 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
         setUserTags(d)
         handleTagUpdate(d)
       })
-      console.log(e.target)
-      console.log(e.target.parentNode)
       e.target.parentNode.remove()
     }
     useEffect(() => {
@@ -72,7 +86,7 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
     useEffect(() => {
       if (tags && user) {
           setDisplayTags(tags.map(tag => {
-            if ((user.associated_tags.some((userTag) => userTag.name === tag.name)) || (!tag.name.includes(filter))) {
+            if ((userTags.some((userTag) => userTag.name === tag.name)) || (!tag.name.includes(filter))) {
               return <></>
             } else {
               return (
@@ -97,7 +111,6 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
       </Segment>
       )
     }
-    console.log(userTags)
       return (
         <Accordion styled style={{position:"sticky", top:"20%"}}>
           <Accordion.Title
@@ -128,10 +141,10 @@ const TabSideBar = ({handleTagUpdate, handleFollowUpdate}) => {
           <Accordion.Content active={activeIndex === 1}>
           <Container style={{maxHeight:"400px", "overflow-y": "scroll"}}>
             {userTags.map(tag => 
-              <Menu widths={2}>
-                <Menu.Item >{tag.name}</Menu.Item>
-                <Menu.Item position="right" onClick={(e) => handleDeleteTag(e, tag.id)}>x</Menu.Item>
-              </Menu>
+                <Menu widths={2}>
+                  <Menu.Item >{tag.name}</Menu.Item>
+                  <Menu.Item position="right" id={tag.name} onClick={(e) => handleDeleteTag(e, tag.id)}>x</Menu.Item>
+                </Menu>
               )}
           </Container>
           </Accordion.Content>

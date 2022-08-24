@@ -33,6 +33,13 @@ const Home = () => {
                             <></>
                         }
                 }))
+            } else if (userTags?.length === 0 && (following.length !== 0)) {
+                setDisplayPosts(posts.map(post => {
+                    if ( following.some(userFollowing => post.user.id === userFollowing.id) ) {
+                        return <PostCard post={post}/>
+                    } else {
+                        <></>
+                    }}))
             } else {
                 console.log('hi')
                 setDisplayPosts(posts.map(post => {return <PostCard post={post}/>}))
