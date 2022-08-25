@@ -82,7 +82,7 @@ const EditPostForm = ({post}) => {
                             <Button style={{"width":"40%"}} type="submit">submit</Button>
                         </Form>
                     </GridColumn>
-                    <GridColumn> {videoUrl? <ReactPlayer url={videoUrl} controls={true} />: <h1>video preview</h1> }</GridColumn>
+                    <GridColumn> {videoUrl? <ReactPlayer url={videoUrl} controls={true} style={{"width":"fit-content"}} />: <h1>video preview</h1> }</GridColumn>
                 </GridRow>
             </Grid>
         </Segment>

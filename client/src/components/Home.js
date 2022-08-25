@@ -8,7 +8,7 @@ import { PostContext } from "../context/posts";
 
 const Home = () => {
     const {user, updateUser} = useContext(UserContext)
-    const {posts} = useContext(PostContext)
+    const {posts, updatePosts} = useContext(PostContext)
     const [userTags, setUserTags] = useState(false)
     const [following, setFollowing] = useState(false)
     const [displayPosts, setDisplayPosts] = useState(null)
@@ -20,6 +20,7 @@ const Home = () => {
     }
     useEffect(() => {
         updateUser()
+        updatePosts()
     },[])
     useEffect(() =>{
         if (posts.length !== 0) {

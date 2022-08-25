@@ -9,9 +9,10 @@ const Discover = () => {
     const [tags, setTags] = useState(null)
     const [valueArray, setValueArray] = useState({value: []})
     const [showAll, setShowAll] = useState(true)
-    const {posts} = useContext(PostContext)
+    const {posts, updatePosts} = useContext(PostContext)
     const [displayPosts, setDisplayPosts] = useState(null)
     useEffect(() => {
+        updatePosts()
         fetch('/tags')
         .then(r => r.json())
         .then(tags => tags.map(tag => {return {key:tag.id, text:tag.name, value:tag.name}}))

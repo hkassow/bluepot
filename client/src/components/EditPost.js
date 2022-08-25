@@ -9,7 +9,7 @@ const EditPost = () => {
     return (
         <>
         <NavBar/>
-        <Header textAlign="centered" size="huge" style={{"padding":"50px"}}> home top space </Header>
+        <Header textAlign="centered" size="huge" style={{"padding":"50px"}}></Header>
         <Grid columns={"equal"}>
             <GridColumn width={2}>
             </GridColumn>
