@@ -103,5 +103,5 @@ Take the following steps to set up the servers in a development environment
 
 
 ## Project Status
-- Project is: _in progress_.
+- Project is: _completed_.
 
