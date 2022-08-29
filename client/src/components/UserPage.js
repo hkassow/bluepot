@@ -5,10 +5,12 @@ import PostCard from "./PostCard"
 import CommentCard from "./CommentCard"
 import { UserContext } from "../context/user"
 import FollowButton from "./FollowButton"
+import {  useNavigate } from "react-router-dom"
 
 const UserPage = () => {
     let username = window.location.pathname.split('/')[2]
     const {user} = useContext(UserContext)
+    const navigate = useNavigate()
     const [pageOwner, setPageOwner] = useState(false)
     const [toggle, setToggle] = useState(false)
     const [comments, setComments] = useState([])
@@ -36,7 +38,7 @@ const UserPage = () => {
     const handleDelete = () => {
         fetch(`/users/${user.id}`, {
             method: "DELETE"
-        })
+        }).then(() => navigate('/', {replace: true}))
 
     }
     return (
